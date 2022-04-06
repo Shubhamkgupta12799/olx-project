@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.olx.dto.User;
 import com.olx.service.LoginService;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
 @RequestMapping("/olx/login")
 @CrossOrigin(origins = "*")
@@ -25,26 +28,31 @@ public class LoginController {
 	LoginService loginService;
 
 	@PostMapping(value = "/user/authenticate", consumes = MediaType.APPLICATION_JSON_VALUE)
-	public String authenticate(@RequestBody User user) {
+	@ApiOperation(value="This is for user authentication", notes="This REST API for validation of all Users")
+	public String authenticate(@ApiParam(value="Stock id", name="id") @RequestBody User user) {
 		return loginService.authenticate(user);
 	}
 
 	@DeleteMapping(value = "/user/logout")
+	@ApiOperation(value="Logout user", notes="This REST API for logout all Users")
 	public boolean logout() {
 		return loginService.logout();
 	}
 	
 	@PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public User createNewStock(@RequestBody User user) {
+	@ApiOperation(value="Post all User", notes="This REST API post list of all Users")
+	public User createNewStock(@ApiParam(value="Stock id", name="id") @RequestBody User user) {
 		return loginService.createNewUser(user);
 	}
 
 	@GetMapping(value = "/user", produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<User> getAllStocks() {
+	@ApiOperation(value="Get all User", notes="This REST API returns list of all Users")
+	public List<User> getAllUsers() {
 		return loginService.getAllUsers();
 	}
 	
 	@GetMapping(value = "/token/validate")
+	@ApiOperation(value="Validate all User", notes="This REST API validate of Users")
 	public boolean validationOfUser()
 	{
 		return loginService.validationOfUser();

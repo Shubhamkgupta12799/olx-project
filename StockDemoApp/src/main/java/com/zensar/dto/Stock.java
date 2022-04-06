@@ -1,15 +1,22 @@
 package com.zensar.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
 @AllArgsConstructor
 public class Stock {
-	
+	@ApiModelProperty(value="Stock identifier")
 	private int Id;
+	
+	@ApiModelProperty(value="Stock identifier")
 	private String name;
+	
+	@ApiModelProperty(value="Stock identifier")
 	private String market;
+	
+	@ApiModelProperty(value="Stock identifier")
 	private int price;
 	
 	public Stock(int Id,String name, String market, int price) {

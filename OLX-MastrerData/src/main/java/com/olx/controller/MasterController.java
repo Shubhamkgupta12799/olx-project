@@ -11,6 +11,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.olx.service.MasterService;
+
+import io.swagger.annotations.ApiOperation;
+
 import com.olx.dto.*;
 
 @RestController
@@ -22,11 +25,13 @@ public class MasterController {
 	MasterService masterService;
 
 	@GetMapping(value = "/category", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Reads all stocks", notes="This REST API returns list of all stocks")
 	public List<Category> getAllCategory() {
 		return masterService.getAllCategory();
 	}
 
 	@GetMapping(value = "/status", produces = MediaType.APPLICATION_JSON_VALUE)
+	@ApiOperation(value="Find the status of Items", notes="This REST API for get status os all items")
 	public List<Status> getAllStatus() {
 		return masterService.getAllStatus();
 	}

@@ -1,14 +1,28 @@
 package com.olx.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 
 public class User {
 
+	@ApiModelProperty(value="User identifier")
 	private int Id;
+	
+	@ApiModelProperty(value="User identifier")
 	private String firstName;
+	
+	@ApiModelProperty(value="User identifier")
 	private String lastName;
+	
+	@ApiModelProperty(value="User identifier")
 	private String userName;
+	
+	@ApiModelProperty(value="User identifier")
 	private String password;
+	
+	@ApiModelProperty(value="User identifier")
 	private String email;
+	
+	@ApiModelProperty(value="User identifier")
 	private long phone;
 	
 	public User(int Id,String firstName, String lastName, String userName, String password, String email, long phone) {

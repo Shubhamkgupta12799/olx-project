@@ -18,6 +18,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.zensar.dto.Stock;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
+
 @RestController
 @RequestMapping("/stockapp")
 @CrossOrigin(origins = "*")
@@ -50,7 +53,7 @@ public class StockController {
 	 }
 	
 	 @DeleteMapping(value = "/stock/{id}")
-	 public boolean getDeleteStocksById(@PathVariable("id") int stockId){
+	 public boolean getDeleteStocksById(@ApiParam(value="Stock id", name="id") @PathVariable("id") int stockId){
 		 for(Stock stock:stocks) {
 			 if(stock.getId() == stockId)
 			 {
@@ -62,7 +65,7 @@ public class StockController {
 	 }
 	
 	@PutMapping(value = "/stock/{id}", consumes = {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces = { MediaType.APPLICATION_JSON_VALUE ,MediaType.APPLICATION_XML_VALUE})
-	public Stock updateStock(@PathVariable("id")int stockId, @RequestBody Stock updateStock)
+	public Stock updateStock(@ApiParam(value="Stock id", name="id") @PathVariable("id")int stockId, @RequestBody Stock updateStock)
 	{
 	Stock existingStock = getAllStocksId(stockId);	
 	existingStock.setName(updateStock.getName());
@@ -72,7 +75,7 @@ public class StockController {
 	}
 	
 	@PostMapping(value = "/stock", consumes = { MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE}, produces= {MediaType.APPLICATION_JSON_VALUE,MediaType.APPLICATION_XML_VALUE} )
-	public Stock createNewStock(@RequestBody Stock stock) {
+	public Stock createNewStock(@ApiParam(value="Stock id", name="id") @RequestBody Stock stock) {
 		stock.setId((stocks.size()+1));
 		stocks.add(stock);
 		return stock;
@@ -80,7 +83,8 @@ public class StockController {
 	
 //
 	 @GetMapping(value = "/stock/{id}", produces =MediaType.APPLICATION_JSON_VALUE)
-	 public Stock getAllStocksId(@PathVariable("id") int stockId){
+	 @ApiOperation(value="Reads stocks by id", notes="This REST API returns list of stocks")
+	 public Stock getAllStocksId(@ApiParam(value="Stock id", name="id") @PathVariable("id") int stockId){
 		 for(Stock stock:stocks) {
 			 if(stock.getId() == stockId)
 			 {
@@ -105,6 +109,7 @@ static List<Stock> stocks = new ArrayList<Stock>();
  
 
  @GetMapping(value = "/stock", produces =MediaType.APPLICATION_JSON_VALUE)
+ @ApiOperation(value="Reads all stocks", notes="This REST API returns list of all stocks")
  public List<Stock> getAllStocks(){
 	 return stocks;
  }

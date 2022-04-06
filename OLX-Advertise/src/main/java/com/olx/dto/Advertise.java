@@ -1,15 +1,25 @@
 package com.olx.dto;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
 //@Data
 //@AllArgsConstructor
 public class Advertise {
+	
+	@ApiModelProperty(value="Advertisement identifier")
 	private String title;
+	
+	@ApiModelProperty(value="Advertisement identifier")
 	private int price;
+	
+	@ApiModelProperty(value="Advertisement identifier")
 	private int catId;
+	
+	@ApiModelProperty(value="Advertisement identifier")
 	private String desc;
+	
 	public Advertise() {
 		super();
 		// TODO Auto-generated constructor stub
