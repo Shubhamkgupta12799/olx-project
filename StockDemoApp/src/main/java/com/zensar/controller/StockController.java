@@ -26,7 +26,7 @@ import io.swagger.annotations.ApiParam;
 @CrossOrigin(origins = "*")
 public class StockController {
 	
-	@GetMapping(value = "/employee")
+	@GetMapping(value = "/employee?eid=45")
 	public boolean testRequestParam(@RequestParam(value="eid", required=false) int empId)
 	{
 		System.out.println("Emp Id: "+empId);
