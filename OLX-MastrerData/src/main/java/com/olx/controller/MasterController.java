@@ -30,4 +30,6 @@ public class MasterController {
 	public List<Status> getAllStatus() {
 		return masterService.getAllStatus();
 	}
+	
+	
 }

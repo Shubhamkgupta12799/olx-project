@@ -34,7 +34,6 @@ public class LoginController {
 		return loginService.logout();
 	}
 	
-
 	@PostMapping(value = "/user", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public User createNewStock(@RequestBody User user) {
 		return loginService.createNewUser(user);

@@ -1,14 +1,17 @@
 package com.olx.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.olx.dto.Advertise;
@@ -61,6 +64,21 @@ public Advertise updateAdvertise(Advertise adv) {
 	public Advertise SearchAdvByText(String searchText){
 		return advertiseService.SearchAdvertiseByText(searchText);
 	} 
+	
+	// Service 13 mapping in AdvertiseController:
+
+		@GetMapping(value="/search/filtercriteria", produces=MediaType.APPLICATION_JSON_VALUE)
+		public List<Advertise> searchAdvertisesByFilterCriteria(@RequestParam("searchText")String searchText,
+		@RequestParam(name = "category", required = false)int categoryId, @RequestParam("postedBy")String postedBy,
+		@RequestParam("dateCondition")String dateCondition,
+		@RequestParam("onDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate onDate,
+		@RequestParam("fromDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate fromDate,
+		@RequestParam("toDate") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate toDate,
+		@RequestParam("sortedBy")String sortedBy, @RequestParam(name = "startIndex", defaultValue="0")int startIndex, @RequestParam(name="records", defaultValue = "10")int records
+		) {
+		return advertiseService.searchAdvertisesByFilterCriteria(searchText, categoryId, postedBy, dateCondition,
+		onDate, fromDate, toDate, sortedBy, startIndex, records);
+		}
 	
 	
 	//15
